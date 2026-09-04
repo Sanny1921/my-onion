@@ -1,5 +1,9 @@
 package com.kreation.onionquality.ui.screens
 
+import android.graphics.Bitmap
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -11,17 +15,35 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.kreation.onionquality.theme.DarkPlum
+import com.kreation.onionquality.ui.viewmodel.InspectionViewModel
+import java.io.File
+import java.io.FileOutputStream
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CameraScreen(
+    viewModel: InspectionViewModel,
     onBack: () -> Unit,
     onPhotoCaptured: () -> Unit
 ) {
-    // This is a placeholder for actual CameraX implementation
-    // A real implementation would use AndroidView with a PreviewView
+    val context = LocalContext.current
+
+    // Camera Capture Launcher
+    val takePictureLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.TakePicturePreview()
+    ) { bitmap: Bitmap? ->
+        if (bitmap != null) {
+            val uri = saveBitmapToCache(context, bitmap)
+            if (uri != null) {
+                viewModel.setImageUri(uri)
+                onPhotoCaptured()
+            }
+        }
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -63,29 +85,49 @@ fun CameraScreen(
                 contentAlignment = Alignment.Center
             ) {
                 Row(
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 32.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 32.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     TextButton(onClick = onBack) {
-                        Text("Retake", color = Color.White)
+                        Text("Cancel", color = Color.White)
                     }
-                    
+
                     // Capture button
                     Button(
-                        onClick = onPhotoCaptured,
+                        onClick = { takePictureLauncher.launch(null) },
                         modifier = Modifier.size(72.dp),
                         shape = CircleShape,
                         colors = ButtonDefaults.buttonColors(containerColor = Color.White)
                     ) {
-                        Box(modifier = Modifier.size(56.dp).background(Color.White, CircleShape).border(2.dp, Color.Black, CircleShape))
+                        Box(
+                            modifier = Modifier
+                                .size(56.dp)
+                                .background(Color.White, CircleShape)
+                                .border(2.dp, Color.Black, CircleShape)
+                        )
                     }
-                    
-                    TextButton(onClick = onPhotoCaptured) {
-                        Text("Use Photo", color = Color.White)
+
+                    TextButton(onClick = { takePictureLauncher.launch(null) }) {
+                        Text("Take Photo", color = Color.White)
                     }
                 }
             }
         }
+    }
+}
+
+private fun saveBitmapToCache(context: android.content.Context, bitmap: Bitmap): Uri? {
+    return try {
+        val file = File(context.cacheDir, "captured_onion_${System.currentTimeMillis()}.jpg")
+        FileOutputStream(file).use { out ->
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out)
+        }
+        Uri.fromFile(file)
+    } catch (e: Exception) {
+        e.printStackTrace()
+        null
     }
 }

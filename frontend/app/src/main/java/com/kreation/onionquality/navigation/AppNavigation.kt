@@ -7,12 +7,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.kreation.onionquality.ui.components.AnimatedBottomNavigation
 import com.kreation.onionquality.ui.screens.*
+import com.kreation.onionquality.ui.viewmodel.InspectionViewModel
 
 @Composable
 fun AppNavigation() {
@@ -22,6 +24,9 @@ fun AppNavigation() {
 
     val mainScreens = listOf("dashboard", "history", "reports", "profile")
     val showBottomNav = currentRoute in mainScreens
+
+    // Shared ViewModel instance across inspection flow
+    val inspectionViewModel: InspectionViewModel = viewModel()
 
     Scaffold(
         bottomBar = {
@@ -63,27 +68,38 @@ fun AppNavigation() {
             composable("profile") { ProfileScreen(onLogout = { navController.navigate("login") { popUpTo(0) } }) }
             
             composable("new_inspection") { NewInspectionScreen(
+                viewModel = inspectionViewModel,
                 onBack = { navController.popBackStack() },
                 onCaptureImage = { navController.navigate("camera") },
                 onStartAnalysis = { navController.navigate("ai_analysis") }
             )}
             
             composable("camera") { CameraScreen(
+                viewModel = inspectionViewModel,
                 onBack = { navController.popBackStack() },
                 onPhotoCaptured = { navController.popBackStack() }
             )}
             
             composable("ai_analysis") { AIAnalysisScreen(
-                onAnalysisComplete = { navController.navigate("quality_results") { popUpTo("new_inspection") { inclusive = true } } }
+                viewModel = inspectionViewModel,
+                onAnalysisComplete = { navController.navigate("quality_results") { popUpTo("new_inspection") { inclusive = true } } },
+                onBack = { navController.popBackStack() }
             )}
             
             composable("quality_results") { QualityResultsScreen(
+                viewModel = inspectionViewModel,
                 onViewDetailed = { navController.navigate("detailed_analysis") },
                 onGenerateReport = { navController.navigate("quality_report") },
-                onBackToDashboard = { navController.navigate("dashboard") { popUpTo(0) } }
+                onBackToDashboard = {
+                    inspectionViewModel.resetState()
+                    navController.navigate("dashboard") { popUpTo(0) }
+                }
             )}
             
-            composable("detailed_analysis") { DetailedAnalysisScreen(onBack = { navController.popBackStack() }) }
+            composable("detailed_analysis") { DetailedAnalysisScreen(
+                viewModel = inspectionViewModel,
+                onBack = { navController.popBackStack() }
+            )}
             
             composable("quality_report") { QualityReportScreen(onBack = { navController.popBackStack() }) }
         }
