@@ -1,0 +1,62 @@
+{
+  "success": true,
+  "inspection": {
+    "id": "INS-20260904061046-522922",
+    "lot_id": "LOT-DEFAULT",
+    "timestamp": "2026-09-04T06:10:46.763766+00:00",
+    "user_provided_sample_count": null,
+    "image_path": "/home/turtle/my-onion/data/samples/onions.jpeg"
+  },
+  "ai_observation": {
+    "is_onion_sample": true,
+    "is_sample_usable": true,
+    "rejection_reason": null,
+    "estimated_visible_count": 26,
+    "defects": {
+      "damaged": 0,
+      "rotten": 0,
+      "sprouted": 0,
+      "undersized": 0,
+      "diseased": 2,
+      "other": 0
+    },
+    "observations": [
+      "Most onions exhibit well-cured, dry outer skins with a golden-brown to yellow coloration.",
+      "A few onions show greenish discoloration on the shoulders, likely due to sun exposure.",
+      "Minor superficial black mold (smut) is visible on the outer scales of at least two bulbs.",
+      "Necks appear tight and well-dried, indicating good post-harvest curing."
+    ],
+    "ai_confidence_signal": 0.95
+  },
+  "backend_metrics": {
+    "analyzable_count": 26,
+    "healthy_count": 24,
+    "defect_count": 2,
+    "healthy_percentage": 92.31,
+    "defect_percentage": 7.69,
+    "defect_breakdown_percentages": {
+      "damaged": 0.0,
+      "rotten": 0.0,
+      "sprouted": 0.0,
+      "undersized": 0.0,
+      "diseased": 7.69,
+      "other": 0.0
+    },
+    "count_consistent": true,
+    "size_measurement_status": "NOT_MEASURABLE"
+  },
+  "grading": {
+    "status": "GRADING_RULES_NOT_VERIFIED",
+    "specification_name": null,
+    "specification_version": null,
+    "grade": null,
+    "notes": "No official verified SIH26031 procurement rule set active. Grading rules must be formally configured."
+  },
+  "final_assessment": {
+    "analysis_status": "COMPLETED",
+    "grading_status": "GRADING_RULES_NOT_VERIFIED",
+    "inspector_status": "PENDING_INSPECTOR_VERIFICATION",
+    "inspector_notes": "Inspection complete. Awaiting procurement officer verification."
+  },
+  "error": null
+}

@@ -1,0 +1,61 @@
+{
+  "success": true,
+  "inspection": {
+    "id": "INS-20260904061144-128d9b",
+    "lot_id": "LOT-DEFAULT",
+    "timestamp": "2026-09-04T06:11:44.441073+00:00",
+    "user_provided_sample_count": null,
+    "image_path": "/home/turtle/my-onion/data/samples/currupt.jpg"
+  },
+  "ai_observation": {
+    "is_onion_sample": true,
+    "is_sample_usable": true,
+    "rejection_reason": null,
+    "estimated_visible_count": 8,
+    "defects": {
+      "damaged": 0,
+      "rotten": 2,
+      "sprouted": 0,
+      "undersized": 1,
+      "diseased": 5,
+      "other": 0
+    },
+    "observations": [
+      "Young onion plants showing severe symptoms of onion smut (Urocystis colchici) with dark, black spore-filled blisters and streaks on the leaves and bulbs.",
+      "Some specimens exhibit water-soaked, yellowish decay indicative of bacterial soft rot or secondary fungal infection.",
+      "Roots are intact but show signs of growth retardation in heavily infected specimens."
+    ],
+    "ai_confidence_signal": 0.95
+  },
+  "backend_metrics": {
+    "analyzable_count": 8,
+    "healthy_count": 0,
+    "defect_count": 8,
+    "healthy_percentage": 0.0,
+    "defect_percentage": 100.0,
+    "defect_breakdown_percentages": {
+      "damaged": 0.0,
+      "rotten": 25.0,
+      "sprouted": 0.0,
+      "undersized": 12.5,
+      "diseased": 62.5,
+      "other": 0.0
+    },
+    "count_consistent": true,
+    "size_measurement_status": "NOT_MEASURABLE"
+  },
+  "grading": {
+    "status": "GRADING_RULES_NOT_VERIFIED",
+    "specification_name": null,
+    "specification_version": null,
+    "grade": null,
+    "notes": "No official verified SIH26031 procurement rule set active. Grading rules must be formally configured."
+  },
+  "final_assessment": {
+    "analysis_status": "COMPLETED",
+    "grading_status": "GRADING_RULES_NOT_VERIFIED",
+    "inspector_status": "PENDING_INSPECTOR_VERIFICATION",
+    "inspector_notes": "Inspection complete. Awaiting procurement officer verification."
+  },
+  "error": null
+}

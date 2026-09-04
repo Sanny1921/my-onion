@@ -1,0 +1,63 @@
+{
+  "success": true,
+  "inspection": {
+    "id": "INS-20260904061203-27d6d6",
+    "lot_id": "LOT-DEFAULT",
+    "timestamp": "2026-09-04T06:12:03.680550+00:00",
+    "user_provided_sample_count": null,
+    "image_path": "/home/turtle/my-onion/data/samples/real_world_peeled_onions.jpg"
+  },
+  "ai_observation": {
+    "is_onion_sample": true,
+    "is_sample_usable": true,
+    "rejection_reason": null,
+    "estimated_visible_count": 2,
+    "defects": {
+      "damaged": 0,
+      "rotten": 0,
+      "sprouted": 0,
+      "undersized": 0,
+      "diseased": 0,
+      "other": 0
+    },
+    "observations": [
+      "Two peeled red onions or shallots",
+      "Outer dry papery skins have been completely removed",
+      "Root and stem ends are trimmed",
+      "Shallow depth of field with the background onion slightly out of focus",
+      "Clean and glossy surface appearance"
+    ],
+    "ai_confidence_signal": 0.85
+  },
+  "backend_metrics": {
+    "analyzable_count": 2,
+    "healthy_count": 2,
+    "defect_count": 0,
+    "healthy_percentage": 100.0,
+    "defect_percentage": 0.0,
+    "defect_breakdown_percentages": {
+      "damaged": 0.0,
+      "rotten": 0.0,
+      "sprouted": 0.0,
+      "undersized": 0.0,
+      "diseased": 0.0,
+      "other": 0.0
+    },
+    "count_consistent": true,
+    "size_measurement_status": "NOT_MEASURABLE"
+  },
+  "grading": {
+    "status": "GRADING_RULES_NOT_VERIFIED",
+    "specification_name": null,
+    "specification_version": null,
+    "grade": null,
+    "notes": "No official verified SIH26031 procurement rule set active. Grading rules must be formally configured."
+  },
+  "final_assessment": {
+    "analysis_status": "COMPLETED",
+    "grading_status": "GRADING_RULES_NOT_VERIFIED",
+    "inspector_status": "PENDING_INSPECTOR_VERIFICATION",
+    "inspector_notes": "Inspection complete. Awaiting procurement officer verification."
+  },
+  "error": null
+}

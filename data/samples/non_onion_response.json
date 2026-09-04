@@ -1,0 +1,46 @@
+{
+  "success": false,
+  "inspection": {
+    "id": "INS-20260904061152-576e48",
+    "lot_id": "LOT-DEFAULT",
+    "timestamp": "2026-09-04T06:11:52.577522+00:00",
+    "user_provided_sample_count": null,
+    "image_path": "/home/turtle/my-onion/data/samples/non_onion.jpg"
+  },
+  "ai_observation": {
+    "is_onion_sample": false,
+    "is_sample_usable": false,
+    "rejection_reason": "The image depicts a laptop computer, not an onion sample.",
+    "estimated_visible_count": 0,
+    "defects": {
+      "damaged": 0,
+      "rotten": 0,
+      "sprouted": 0,
+      "undersized": 0,
+      "diseased": 0,
+      "other": 0
+    },
+    "observations": [
+      "No onions are present in the image. The image shows a laptop computer."
+    ],
+    "ai_confidence_signal": 1.0
+  },
+  "backend_metrics": null,
+  "grading": {
+    "status": "NOT_APPLICABLE",
+    "specification_name": null,
+    "specification_version": null,
+    "grade": null,
+    "notes": "No official verified SIH26031 procurement rule set active."
+  },
+  "final_assessment": {
+    "analysis_status": "NOT_AN_ONION_SAMPLE",
+    "grading_status": "NOT_APPLICABLE",
+    "inspector_status": "PENDING_INSPECTOR_VERIFICATION",
+    "inspector_notes": null
+  },
+  "error": {
+    "code": "NOT_AN_ONION_SAMPLE",
+    "message": "The image depicts a laptop computer, not an onion sample."
+  }
+}
